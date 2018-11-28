@@ -71,7 +71,6 @@ export class CommentsModelRenderer implements ITreeRenderer {
 	private static RESOURCE_ID = 'resource-with-comments';
 	private static COMMENT_ID = 'comment-node';
 
-
 	constructor(
 		@IInstantiationService private instantiationService: IInstantiationService,
 		@IOpenerService private openerService: IOpenerService
@@ -149,6 +148,8 @@ export class CommentsModelRenderer implements ITreeRenderer {
 		templateData.commentText.innerHTML = '';
 		const renderedComment = renderMarkdown(element.comment.body, {
 			inline: true,
+			// this.editor.getConfiguration().fontInfo.fontFamily
+			codeBlockFontFamily: 'Consolas',
 			actionHandler: {
 				callback: (content) => {
 					let uri: URI;

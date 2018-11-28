@@ -22,6 +22,7 @@ export interface RenderOptions {
 	className?: string;
 	inline?: boolean;
 	actionHandler?: IContentActionHandler;
+	codeBlockFontFamily?: string;
 	codeBlockRenderer?: (modeId: string, value: string) => Thenable<string>;
 	codeBlockRenderCallback?: () => void;
 }
@@ -155,7 +156,7 @@ export function renderMarkdown(markdown: IMarkdownString, options: RenderOptions
 				promise.then(options.codeBlockRenderCallback);
 			}
 
-			return `<div class="code" data-code="${id}">${escape(code)}</div>`;
+			return `<div class="code" data-code="${id}"` + options.codeBlockFontFamily ? `style="font-family: ${options.codeBlockFontFamily} "` : '' + `>${escape(code)}</div>`;
 		};
 	}
 
